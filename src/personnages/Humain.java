@@ -34,7 +34,7 @@ public class Humain {
 	}
 	
 	
-	private void parler(String texte) {
+	public void parler(String texte) {
 		System.out.println("L'humain " + nom + " : " + texte +".");
 	}
 	
@@ -47,14 +47,12 @@ public class Humain {
         }
 	}
 	
-    public int gagnerArgent(int gain) {
+    public void gagnerArgent(int gain) {
         this.argent += gain;
-        return argent;
     }
 
-    public int perdreArgent(int perte) {
+    public void perdreArgent(int perte) {
         this.argent -= perte;
-        return argent;
     }
 }
 
