@@ -5,6 +5,9 @@ public class Humain {
     protected String nom;
     protected String boisson;
     protected int argent;
+    protected int nbConnaissance = 0;
+    private Humain[] TabConnaissance = new Humain[30];
+	
 
     public Humain(String nom, String boisson, int argent) {
         this.nom = nom;
@@ -51,11 +54,36 @@ public class Humain {
         }
     }
 
-    public void gagnerArgent(int gain) {
+    protected void gagnerArgent(int gain) {
         this.argent += gain;
     }
 
-    public void perdreArgent(int perte) {
+    protected void perdreArgent(int perte) {
         this.argent -= perte;
+    }
+    
+    public void faireConnaissanceAvec(Humain connaissance) {
+    	this.repondre(connaissance);
+        connaissance.repondre(this);
+    }
+    
+    private void memoriser(Humain connaissance) {
+        if (nbConnaissance < 30) {
+            TabConnaissance[nbConnaissance++] = connaissance;
+        }
+    }
+    
+    public void repondre(Humain connaissance) {
+        direBonjour();
+        connaissance.memoriser(this);
+    }
+    
+    public void listerConnaissance() {
+        System.out.println("Liste des connaissances de " + nom + ":");
+        for (int i = 0; i < nbConnaissance; i++) {
+            if (TabConnaissance[i] != null) {
+                System.out.println((i + 1) + ". " + TabConnaissance[i].getNom());
+            }
+        }
     }
 }
